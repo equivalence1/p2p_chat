@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option java_package = "ru.mit.spbau.common";
+option java_outer_classname = "Proto";
+
+message Message {
+    string name = 1;
+    google.protobuf.Timestamp time = 2;
+    string content = 3;
+}
+
+service Messenger {
+    rpc SendMessage(stream Message) returns (stream Message) {}
+    rpc NotifyTyping(stream google.protobuf.Empty) returns (stream google.protobuf.Empty) {}
+}
